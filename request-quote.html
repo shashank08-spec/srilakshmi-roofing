@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+
+{% block content %}
+
+<section class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="{{ url_for('home') }}">Home</a> / <span>Request a Quote</span></div>
+    <h1>Request a Quote</h1>
+    <p>Tell us what you need and we'll get back to you with pricing and availability — usually within a few hours.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal">
+        <span class="eyebrow">Fast & Free</span>
+        <h2>Get the Best Price on Genuine Roofing Materials</h2>
+        <p>Whether you need a few roofing sheets for a home repair or a bulk order of pipes and shed materials for a factory, fill out the form and our team will respond quickly with pricing.</p>
+
+        <div class="grid grid--2" style="margin-top:24px;">
+          <div class="feature-card card">
+            <div class="feature-card__icon">{{ icon('phone', 22) }}</div>
+            <h3>Prefer to Call?</h3>
+            <p><a href="tel:{{ company_phone_primary_tel }}">{{ company_phone_primary }}</a></p>
+          </div>
+          <div class="feature-card card">
+            <div class="feature-card__icon">{{ icon('whatsapp', 22) }}</div>
+            <h3>Prefer WhatsApp?</h3>
+            <p><a href="https://wa.me/{{ company_whatsapp }}" target="_blank" rel="noopener">Message us directly</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="form-card">
+          <form action="{{ url_for('request_quote') }}" method="POST" data-validate novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="q-name">Full Name <span class="req">*</span></label>
+                <input type="text" id="q-name" name="name" required>
+                <span class="field-error">Please enter your name.</span>
+              </div>
+              <div class="field">
+                <label for="q-phone">Phone Number <span class="req">*</span></label>
+                <input type="tel" id="q-phone" name="phone" required>
+                <span class="field-error">Please enter a valid phone number.</span>
+              </div>
+              <div class="field form-grid--full">
+                <label for="q-email">Email Address</label>
+                <input type="email" id="q-email" name="email">
+                <span class="field-error">Please enter a valid email address.</span>
+              </div>
+              <div class="field">
+                <label for="q-product">Product Required <span class="req">*</span></label>
+                <select id="q-product" name="product" required>
+                  <option value="" disabled {{ 'selected' if not preselect }}>Select a product</option>
+                  {% for p in products %}
+                  <option value="{{ p.name }}" {{ 'selected' if preselect == p.name }}>{{ p.name }}</option>
+                  {% endfor %}
+                  <option value="Other" {{ 'selected' if preselect == 'Other' }}>Other / Not Sure</option>
+                </select>
+                <span class="field-error">Please select a product.</span>
+              </div>
+              <div class="field">
+                <label for="q-quantity">Quantity</label>
+                <input type="text" id="q-quantity" name="quantity" placeholder="e.g. 50 sheets, 200 ft">
+              </div>
+              <div class="field form-grid--full">
+                <label for="q-message">Message</label>
+                <textarea id="q-message" name="message" placeholder="Any specific brand, grade, thickness or delivery location..."></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn btn--accent btn--block" style="margin-top:20px;">Submit Quote Request</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

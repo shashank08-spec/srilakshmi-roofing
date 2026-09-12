@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+{% from "_icons.html" import icon %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ page_title|default(company_name ~ ' | ' ~ company_tagline) }}</title>
+<meta name="description" content="{{ meta_description|default('Sri Lakshmi Roofing Industry — trusted supplier of steel roofing sheets, pipes, roofing accessories and industrial shed materials in Haliya, Nalgonda, Telangana.') }}">
+<meta name="keywords" content="roofing sheets Nalgonda, Tata roofing sheets Telangana, JSW roofing sheets, industrial shed materials Haliya, GP pipes Nalgonda, roofing accessories Telangana, AZ-150 sheets, AZ-70 sheets">
+<meta name="robots" content="index, follow">
+<meta name="author" content="{{ company_name }}">
+<link rel="canonical" href="{{ site_domain }}{{ request.path }}">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ page_title|default(company_name) }}">
+<meta property="og:description" content="{{ meta_description|default(company_tagline) }}">
+<meta property="og:url" content="{{ site_domain }}{{ request.path }}">
+<meta property="og:site_name" content="{{ company_name }}">
+<meta property="og:image" content="{{ site_domain }}/static/img/og-cover.jpg">
+<meta property="og:locale" content="en_IN">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page_title|default(company_name) }}">
+<meta name="twitter:description" content="{{ meta_description|default(company_tagline) }}">
+
+<!-- Favicon -->
+<link rel="icon" href="{{ url_for('static', filename='img/favicon.svg') }}" type="image/svg+xml">
+
+<!-- Preconnect for font performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<!-- Schema.org: LocalBusiness / Store -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HardwareStore",
+  "name": "{{ company_name }}",
+  "image": "{{ site_domain }}/static/img/og-cover.jpg",
+  "@id": "{{ site_domain }}",
+  "url": "{{ site_domain }}",
+  "telephone": "{{ company_phone_primary }}",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Survey No. 238, Eshwar Nagar, DVK Road, Anumula",
+    "addressLocality": "Haliya, Nalgonda",
+    "addressRegion": "Telangana",
+    "postalCode": "508377",
+    "addressCountry": "IN"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "08:00",
+      "closes": "20:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Sunday"],
+      "opens": "09:00",
+      "closes": "14:00"
+    }
+  ],
+  "sameAs": [
+    "{{ social_links.facebook }}",
+    "{{ social_links.instagram }}",
+    "{{ social_links.youtube }}"
+  ]
+}
+</script>
+{% block extra_head %}{% endblock %}
+</head>
+<body>
+<div id="page-loader" aria-hidden="true"><div class="loader-mark"></div></div>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- Top utility bar -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar__contacts">
+      <a class="topbar__item" href="tel:{{ company_phone_primary_tel }}">{{ icon('phone', 14) }} {{ company_phone_primary }}</a>
+      <a class="topbar__item" href="mailto:{{ company_email }}">{{ icon('mail', 14) }} {{ company_email }}</a>
+      <span class="topbar__item">{{ icon('map-pin', 14) }} Haliya, Nalgonda, Telangana</span>
+    </div>
+    <div class="topbar__social">
+      <a href="{{ social_links.facebook }}" aria-label="Facebook" target="_blank" rel="noopener">{{ icon('facebook', 14) }}</a>
+      <a href="{{ social_links.instagram }}" aria-label="Instagram" target="_blank" rel="noopener">{{ icon('instagram', 14) }}</a>
+      <a href="{{ social_links.youtube }}" aria-label="YouTube" target="_blank" rel="noopener">{{ icon('youtube', 14) }}</a>
+    </div>
+  </div>
+</div>
+
+<!-- Main navigation -->
+<header class="navbar">
+  <div class="container">
+    <a href="{{ url_for('home') }}" class="brand">
+      <span class="brand__mark">{{ icon('roof', 24) }}</span>
+      <span class="brand__text">
+        <span class="brand__name">Sri Lakshmi Roofing</span>
+        <span class="brand__tagline">Industry</span>
+      </span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="{{ url_for('home') }}" class="{{ 'is-active' if request.endpoint == 'home' }}">Home</a>
+      <a href="{{ url_for('about') }}" class="{{ 'is-active' if request.endpoint == 'about' }}">About Us</a>
+      <a href="{{ url_for('products') }}" class="{{ 'is-active' if request.endpoint == 'products' }}">Products</a>
+      <a href="{{ url_for('brands') }}" class="{{ 'is-active' if request.endpoint == 'brands' }}">Brands</a>
+      <a href="{{ url_for('why_choose_us') }}" class="{{ 'is-active' if request.endpoint == 'why_choose_us' }}">Why Choose Us</a>
+      <a href="{{ url_for('gallery') }}" class="{{ 'is-active' if request.endpoint == 'gallery' }}">Gallery</a>
+      <a href="{{ url_for('faq') }}" class="{{ 'is-active' if request.endpoint == 'faq' }}">FAQ</a>
+      <a href="{{ url_for('contact') }}" class="{{ 'is-active' if request.endpoint == 'contact' }}">Contact</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a href="tel:{{ company_phone_primary_tel }}" class="btn btn--outline-dark btn--sm">{{ icon('phone', 16) }}<span>Call Now</span></a>
+      <a href="{{ url_for('request_quote') }}" class="btn btn--accent btn--sm">Request a Quote</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        {{ icon('menu', 26) }}
+      </button>
+    </div>
+  </div>
+</header>
+<div class="nav-overlay"></div>
+
+<main id="main-content">
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="container" style="padding-top:24px;">
+      {% for category, message in messages %}
+        <div class="alert alert--{{ 'success' if category == 'success' else 'error' }}">
+          {{ icon('check-circle', 20) if category == 'success' else icon('alert-circle', 20) }}
+          <span>{{ message }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+{% block content %}{% endblock %}
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-brand">
+      <a href="{{ url_for('home') }}" class="brand" style="margin-bottom:16px;">
+        <span class="brand__mark">{{ icon('roof', 22) }}</span>
+        <span class="brand__text">
+          <span class="brand__name" style="color:#fff;">Sri Lakshmi Roofing</span>
+          <span class="brand__tagline">Industry</span>
+        </span>
+      </a>
+      <p>{{ company_tagline }}. Trusted supplier of Tata, JSW, Jindal, Apollo & AMNS roofing sheets, pipes, accessories and industrial shed materials in Haliya, Nalgonda, Telangana.</p>
+      <div class="footer-social">
+        <a href="{{ social_links.facebook }}" aria-label="Facebook" target="_blank" rel="noopener">{{ icon('facebook', 16) }}</a>
+        <a href="{{ social_links.instagram }}" aria-label="Instagram" target="_blank" rel="noopener">{{ icon('instagram', 16) }}</a>
+        <a href="{{ social_links.youtube }}" aria-label="YouTube" target="_blank" rel="noopener">{{ icon('youtube', 16) }}</a>
+      </div>
+    </div>
+
+    <div>
+      <h4>Quick Links</h4>
+      <div class="footer-links">
+        <a href="{{ url_for('about') }}">About Us</a>
+        <a href="{{ url_for('why_choose_us') }}">Why Choose Us</a>
+        <a href="{{ url_for('brands') }}">Brands</a>
+        <a href="{{ url_for('gallery') }}">Gallery</a>
+        <a href="{{ url_for('faq') }}">FAQ</a>
+        <a href="{{ url_for('request_quote') }}">Request a Quote</a>
+      </div>
+    </div>
+
+    <div>
+      <h4>Products</h4>
+      <div class="footer-links">
+        {% for p in product_categories %}
+        <a href="{{ url_for('products') }}#{{ p.slug }}">{{ p.name }}</a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div>
+      <h4>Get in Touch</h4>
+      <div class="footer-links">
+        <span>{{ company_address }}</span>
+        <a href="tel:{{ company_phone_primary_tel }}">{{ company_phone_primary }}</a>
+        <a href="mailto:{{ company_email }}">{{ company_email }}</a>
+      </div>
+      <form class="newsletter-box" action="{{ url_for('newsletter_subscribe') }}" method="POST">
+        <input type="email" name="email" placeholder="Your email for updates" required aria-label="Email for newsletter">
+        <button type="submit" class="btn btn--accent btn--sm">Join</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <span>&copy; {{ current_year }} {{ company_name }}. All rights reserved. GSTIN: {{ company_gst }}</span>
+    <span>
+      <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a> &nbsp;|&nbsp;
+      <a href="{{ url_for('terms_conditions') }}">Terms & Conditions</a>
+    </span>
+  </div>
+</footer>
+
+<!-- Floating action buttons -->
+<div class="floating-actions">
+  <button class="fab fab--top" aria-label="Back to top">{{ icon('arrow-up', 20) }}</button>
+  <a class="fab fab--call" href="tel:{{ company_phone_primary_tel }}" aria-label="Call us">{{ icon('phone', 24) }}</a>
+  <a class="fab fab--whatsapp" href="https://wa.me/{{ company_whatsapp }}?text=Hi%2C%20I%27m%20interested%20in%20your%20roofing%20products." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">{{ icon('whatsapp', 26) }}</a>
+</div>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block extra_scripts %}{% endblock %}
+</body>
+</html>

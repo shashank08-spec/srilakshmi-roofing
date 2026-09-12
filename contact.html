@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+
+{% block content %}
+
+<section class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="{{ url_for('home') }}">Home</a> / <span>Contact</span></div>
+    <h1>Contact Us</h1>
+    <p>Visit our store, call, WhatsApp, or send an enquiry — we're happy to help with your roofing and industrial material needs.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info-card reveal">
+          <div class="contact-info-card__icon">{{ icon('map-pin', 22) }}</div>
+          <div>
+            <h3>Our Address</h3>
+            <p>{{ company_address }}</p>
+            <a href="{{ maps_directions_url }}" target="_blank" rel="noopener" class="btn btn--outline-dark btn--sm" style="margin-top:10px;">Get Directions</a>
+          </div>
+        </div>
+
+        <div class="contact-info-card reveal reveal-delay-1">
+          <div class="contact-info-card__icon">{{ icon('phone', 22) }}</div>
+          <div>
+            <h3>Call Us</h3>
+            {% for phone in company_phones %}
+            <p><a href="tel:{{ phone|replace(' ', '') }}">{{ phone }}</a></p>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="contact-info-card reveal reveal-delay-2">
+          <div class="contact-info-card__icon">{{ icon('mail', 22) }}</div>
+          <div>
+            <h3>Email Us</h3>
+            <p><a href="mailto:{{ company_email }}">{{ company_email }}</a></p>
+          </div>
+        </div>
+
+        <div class="contact-info-card reveal reveal-delay-3">
+          <div class="contact-info-card__icon">{{ icon('clock', 22) }}</div>
+          <div>
+            <h3>Business Hours</h3>
+            {% for day, hours in company_hours %}
+            <p>{{ day }}: {{ hours }}</p>
+            {% endfor %}
+          </div>
+        </div>
+
+        <a href="https://wa.me/{{ company_whatsapp }}?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20your%20products." target="_blank" rel="noopener" class="btn btn--whatsapp btn--block reveal">
+          {{ icon('whatsapp', 20) }} Chat with Us on WhatsApp
+        </a>
+      </div>
+
+      <div class="reveal">
+        <div class="map-wrap" style="margin-bottom:24px;">
+          <iframe src="{{ maps_embed_src }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Sri Lakshmi Roofing Industry location on Google Maps"></iframe>
+        </div>
+
+        <div class="form-card" id="contact-form">
+          <h3>Send Us an Enquiry</h3>
+          <form action="{{ url_for('contact_submit') }}" method="POST" data-validate novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Full Name <span class="req">*</span></label>
+                <input type="text" id="name" name="name" required>
+                <span class="field-error">Please enter your name.</span>
+              </div>
+              <div class="field">
+                <label for="phone">Phone Number <span class="req">*</span></label>
+                <input type="tel" id="phone" name="phone" required>
+                <span class="field-error">Please enter a valid phone number.</span>
+              </div>
+              <div class="field form-grid--full">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email">
+                <span class="field-error">Please enter a valid email address.</span>
+              </div>
+              <div class="field form-grid--full">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="e.g. Roofing sheet enquiry">
+              </div>
+              <div class="field form-grid--full">
+                <label for="message">Message <span class="req">*</span></label>
+                <textarea id="message" name="message" required></textarea>
+                <span class="field-error">Please enter your message.</span>
+              </div>
+            </div>
+            <button type="submit" class="btn btn--accent btn--block" style="margin-top:20px;">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

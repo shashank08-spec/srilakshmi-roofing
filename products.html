@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+
+{% block content %}
+
+<section class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="{{ url_for('home') }}">Home</a> / <span>Products</span></div>
+    <h1>Our Products</h1>
+    <p>Roofing sheets, pipes, accessories, industrial shed materials and consumables — everything for your roofing or industrial project.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="filter-bar reveal">
+      <div class="filter-chips">
+        <button class="filter-chip is-active" data-filter="all">All Products</button>
+        {% for p in products %}
+        <button class="filter-chip" data-filter="{{ p.slug }}">{{ p.name }}</button>
+        {% endfor %}
+      </div>
+      <div class="search-box">
+        {{ icon('search', 18) }}
+        <input type="search" placeholder="Search products, brands, specs..." data-product-search aria-label="Search products">
+      </div>
+    </div>
+
+    <div class="grid grid--3" data-product-grid>
+      {% for p in products %}
+      <div class="card product-card reveal reveal-delay-{{ loop.index0 % 4 }}"
+           id="{{ p.slug }}"
+           data-category="{{ p.slug }}"
+           data-search="{{ p.name }} {{ p.short }} {{ p.brands|join(' ') }} {{ p.specs|map(attribute='value')|join(' ') }}">
+        <div class="product-card__media">
+          {{ icon(p.icon, 56) }}
+          <span class="product-card__badge">{{ p.brands|length }} Brands</span>
+        </div>
+        <div class="product-card__body">
+          <h3>{{ p.name }}</h3>
+          <p class="desc">{{ p.description }}</p>
+          <ul class="product-card__specs">
+            {% for s in p.specs %}
+            <li><b>{{ s.label }}:</b> {{ s.value }}</li>
+            {% endfor %}
+          </ul>
+          {% if p.brands %}
+          <div class="product-card__brands">
+            {% for brand in p.brands %}
+            <span class="chip">{{ brand }}</span>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <div class="product-card__footer">
+            <a href="{{ url_for('request_quote', product=p.name) }}" class="btn btn--accent btn--sm btn--block">{{ icon('phone', 15) }} Enquire Now</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="no-results">
+      <h3>No products matched your search</h3>
+      <p>Try a different keyword, or call us directly — we likely stock it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section--tight">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <div>
+        <h2>Can't Find What You're Looking For?</h2>
+        <p>We stock a lot more than what's listed here. Call or WhatsApp us with your requirement.</p>
+      </div>
+      <div class="cta-banner__actions">
+        <a href="tel:{{ company_phone_primary_tel }}" class="btn btn--accent">{{ icon('phone', 18) }} Call Now</a>
+        <a href="https://wa.me/{{ company_whatsapp }}" target="_blank" rel="noopener" class="btn btn--outline">{{ icon('whatsapp', 18) }} WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

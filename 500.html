@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="error-page reveal">
+      <div class="code">500</div>
+      <h1>Something Went Wrong</h1>
+      <p>We're experiencing a technical issue. Please try again shortly, or call us directly.</p>
+      <div class="hero__actions" style="justify-content:center;">
+        <a href="{{ url_for('home') }}" class="btn btn--accent">Back to Home</a>
+        <a href="tel:{{ company_phone_primary_tel }}" class="btn btn--outline-dark">Call {{ company_phone_primary }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

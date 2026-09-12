@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+
+{% block content %}
+
+<section class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="{{ url_for('home') }}">Home</a> / <span>Why Choose Us</span></div>
+    <h1>Why Choose Sri Lakshmi Roofing Industry</h1>
+    <p>Seven solid reasons customers across Nalgonda and Telangana trust us for roofing and industrial materials.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid--3">
+      {% for item in reasons %}
+      <div class="card feature-card reveal reveal-delay-{{ loop.index0 % 4 }}">
+        <div class="feature-card__icon">{{ icon(item.icon, 26) }}</div>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.text }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Proof, Not Promises</span>
+      <h2>Trusted by Customers Across Telangana</h2>
+    </div>
+    <div class="grid grid--4">
+      {% for t in testimonials %}
+      <div class="card testimonial-card reveal reveal-delay-{{ loop.index0 % 4 }}" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.1);">
+        <div class="testimonial-card__stars">
+          {% for i in range(t.rating) %}{{ icon('star', 16) }}{% endfor %}
+        </div>
+        <p class="quote" style="color:#e6ecf3;">&ldquo;{{ t.text }}&rdquo;</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar">{{ t.name[0] }}</div>
+          <div>
+            <strong style="color:#fff;">{{ t.name }}</strong>
+            <span>{{ t.role }}</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section--tight">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <div>
+        <h2>Experience the Difference Yourself</h2>
+        <p>Call, WhatsApp, or request a quote today and see why we're the preferred roofing supplier in the region.</p>
+      </div>
+      <div class="cta-banner__actions">
+        <a href="tel:{{ company_phone_primary_tel }}" class="btn btn--accent">{{ icon('phone', 18) }} Call Now</a>
+        <a href="https://wa.me/{{ company_whatsapp }}" target="_blank" rel="noopener" class="btn btn--outline">{{ icon('whatsapp', 18) }} WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

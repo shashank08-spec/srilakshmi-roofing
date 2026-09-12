@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+
+{% block content %}
+
+<section class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="{{ url_for('home') }}">Home</a> / <span>Gallery</span></div>
+    <h1>Project & Product Gallery</h1>
+    <p>A look at our stock, installations and completed projects across Nalgonda and Telangana.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="gallery-filters reveal">
+      <button class="filter-chip is-active" data-filter="all">All</button>
+      <button class="filter-chip" data-filter="sheets">Roofing Sheets</button>
+      <button class="filter-chip" data-filter="pipes">Pipes</button>
+      <button class="filter-chip" data-filter="shed">Shed Projects</button>
+      <button class="filter-chip" data-filter="accessories">Accessories</button>
+      <button class="filter-chip" data-filter="consumables">Consumables</button>
+      <button class="filter-chip" data-filter="warehouse">Warehouse</button>
+    </div>
+
+    <div class="gallery-grid reveal">
+      {% for img in images %}
+      <div class="gallery-item" data-category="{{ img.category }}" data-caption="{{ img.caption }}" tabindex="0" role="button" aria-label="View: {{ img.caption }}">
+        <div class="gallery-item__ph">{{ icon('roof', 44) }}</div>
+        <div class="gallery-item__caption">{{ img.caption }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<div class="lightbox">
+  <div class="lightbox__content">
+    <button class="lightbox__close" aria-label="Close">{{ icon('close', 20) }}</button>
+    <p data-lightbox-body style="font-size:1.1rem; font-family:var(--font-display); font-weight:600;"></p>
+  </div>
+</div>
+
+<section class="section--tight">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <div>
+        <h2>Want Your Project Featured Here?</h2>
+        <p>Buy your roofing and shed materials from us and let us showcase your completed project.</p>
+      </div>
+      <div class="cta-banner__actions">
+        <a href="{{ url_for('request_quote') }}" class="btn btn--accent">Request a Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

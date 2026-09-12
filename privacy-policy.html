@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="{{ url_for('home') }}">Home</a> / <span>Privacy Policy</span></div>
+    <h1>Privacy Policy</h1>
+    <p>Last updated: {{ current_year }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container prose">
+    <p>{{ company_name }} ("we", "us", "our") operates this website. This Privacy Policy explains how we collect, use and protect the personal information you share with us through this website.</p>
+
+    <h2>Information We Collect</h2>
+    <ul>
+      <li>Contact details you submit through our Contact form or Request a Quote form — name, phone number, email address, and message content.</li>
+      <li>Email address submitted through our newsletter subscription box.</li>
+      <li>Basic technical information (such as browser type and pages visited) collected automatically to help us improve the website.</li>
+    </ul>
+
+    <h2>How We Use Your Information</h2>
+    <ul>
+      <li>To respond to your enquiries and quote requests.</li>
+      <li>To provide pricing, product information and delivery updates.</li>
+      <li>To send occasional updates if you have subscribed to our newsletter.</li>
+      <li>To improve our website and services.</li>
+    </ul>
+
+    <h2>Sharing of Information</h2>
+    <p>We do not sell, rent or trade your personal information to third parties. Information you submit is used only by {{ company_name }} for the purposes described above.</p>
+
+    <h2>Data Security</h2>
+    <p>We take reasonable measures to protect the information you share with us. However, no method of transmission over the internet is 100% secure.</p>
+
+    <h2>Your Choices</h2>
+    <p>You may unsubscribe from our newsletter at any time by contacting us at {{ company_email }}. You may also request that we delete any personal information we hold about you.</p>
+
+    <h2>Contact Us</h2>
+    <p>If you have questions about this Privacy Policy, please contact us at {{ company_email }} or {{ company_phone_primary }}.</p>
+  </div>
+</section>
+{% endblock %}

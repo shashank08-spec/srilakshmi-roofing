@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+
+{% block content %}
+
+<section class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="{{ url_for('home') }}">Home</a> / <span>Brands</span></div>
+    <h1>Brands We Stock</h1>
+    <p>We deal exclusively in genuine, factory-sourced material from India's most trusted steel and pipe manufacturers.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Authorized Stockists</span>
+      <h2>Roofing Sheet & Pipe Brands</h2>
+      <p>Every brand below is available with full specification support — coating grade, thickness and profile — to match your project.</p>
+    </div>
+    <div class="grid grid--4">
+      {% for b in brands %}
+      <div class="card feature-card reveal reveal-delay-{{ loop.index0 % 4 }}" style="text-align:center;">
+        <div class="feature-card__icon" style="margin-inline:auto;">{{ icon('badge-check', 24) }}</div>
+        <h3>{{ b.name }}</h3>
+        <p>{{ b.note }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--grey">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why Brand Matters</span>
+      <h2>Genuine Material Protects Your Investment</h2>
+      <p>Roofing is a long-term investment. Duplicate or substandard sheets fail early, rust faster and cost more in repairs. That's why we deal only in verified, branded material.</p>
+    </div>
+    <div class="grid grid--3">
+      <div class="card feature-card reveal">
+        <div class="feature-card__icon">{{ icon('shield', 24) }}</div>
+        <h3>Verified Sourcing</h3>
+        <p>We purchase directly from authorized dealers and mills — every sheet is traceable to its brand.</p>
+      </div>
+      <div class="card feature-card reveal reveal-delay-1">
+        <div class="feature-card__icon">{{ icon('badge-check', 24) }}</div>
+        <h3>Coating Grade Guaranteed</h3>
+        <p>AZ-70 and AZ-150 grades are clearly labelled and verified before dispatch.</p>
+      </div>
+      <div class="card feature-card reveal reveal-delay-2">
+        <div class="feature-card__icon">{{ icon('heart-handshake', 24) }}</div>
+        <h3>After-Sales Support</h3>
+        <p>Questions about your purchase later? We stand behind every brand we sell.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section--tight">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <div>
+        <h2>Not Sure Which Brand or Grade to Choose?</h2>
+        <p>Talk to our team — we'll recommend the right sheet, thickness and brand for your project and budget.</p>
+      </div>
+      <div class="cta-banner__actions">
+        <a href="{{ url_for('request_quote') }}" class="btn btn--accent">Get Expert Advice</a>
+        <a href="tel:{{ company_phone_primary_tel }}" class="btn btn--outline">{{ icon('phone', 18) }} Call Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for f in faqs %}
+    {
+      "@type": "Question",
+      "name": {{ f.q|tojson }},
+      "acceptedAnswer": { "@type": "Answer", "text": {{ f.a|tojson }} }
+    }{{ "," if not loop.last }}
+    {% endfor %}
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="{{ url_for('home') }}">Home</a> / <span>FAQ</span></div>
+    <h1>Frequently Asked Questions</h1>
+    <p>Answers about our roofing sheets, pricing, delivery, GST billing and more.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="accordion">
+      {% for f in faqs %}
+      <div class="accordion-item reveal">
+        <button class="accordion-trigger" aria-expanded="false">
+          <span>{{ f.q }}</span>
+          <span class="plus">{{ icon('close', 16) }}</span>
+        </button>
+        <div class="accordion-panel">
+          <div class="accordion-panel__inner">{{ f.a }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section--tight">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <div>
+        <h2>Still Have Questions?</h2>
+        <p>Our team is happy to help — call, WhatsApp, or send us an enquiry.</p>
+      </div>
+      <div class="cta-banner__actions">
+        <a href="tel:{{ company_phone_primary_tel }}" class="btn btn--accent">{{ icon('phone', 18) }} Call Now</a>
+        <a href="{{ url_for('contact') }}" class="btn btn--outline">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

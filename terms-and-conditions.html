@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="{{ url_for('home') }}">Home</a> / <span>Terms & Conditions</span></div>
+    <h1>Terms & Conditions</h1>
+    <p>Last updated: {{ current_year }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container prose">
+    <p>Please read these Terms & Conditions carefully before using the {{ company_name }} website or purchasing products from us.</p>
+
+    <h2>General</h2>
+    <p>{{ company_name }}, located at {{ company_address }}, GSTIN {{ company_gst }}, supplies steel roofing sheets, pipes, roofing accessories, industrial shed materials and industrial consumables. Product availability, specifications and prices are subject to change without prior notice.</p>
+
+    <h2>Quotes & Orders</h2>
+    <ul>
+      <li>Quotes provided via this website, phone or WhatsApp are estimates and may vary based on current market prices at the time of order confirmation.</li>
+      <li>Orders are confirmed only after mutual agreement on price, quantity and delivery terms.</li>
+      <li>GST invoices are provided for all purchases.</li>
+    </ul>
+
+    <h2>Delivery</h2>
+    <p>Delivery timelines are communicated at the time of order confirmation and may vary based on location, order size and material availability.</p>
+
+    <h2>Product Warranty</h2>
+    <p>Manufacturer warranties, where applicable, are as specified by the respective brand (Tata, JSW, Jindal, Apollo, AMNS, MPL, Hariom). {{ company_name }} will assist customers with warranty-related queries wherever possible.</p>
+
+    <h2>Website Use</h2>
+    <p>The content on this website is for general informational purposes. While we strive for accuracy, we do not guarantee that all information is complete or error-free at all times.</p>
+
+    <h2>Limitation of Liability</h2>
+    <p>{{ company_name }} shall not be liable for any indirect or consequential loss arising from the use of this website or the products supplied, beyond what is required under applicable Indian law.</p>
+
+    <h2>Governing Law</h2>
+    <p>These terms are governed by the laws of India, with jurisdiction in Nalgonda, Telangana.</p>
+
+    <h2>Contact</h2>
+    <p>For any questions regarding these Terms & Conditions, contact us at {{ company_email }} or {{ company_phone_primary }}.</p>
+  </div>
+</section>
+{% endblock %}

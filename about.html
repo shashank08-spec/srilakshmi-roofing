@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+
+{% block content %}
+
+<section class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="{{ url_for('home') }}">Home</a> / <span>About Us</span></div>
+    <h1>About Sri Lakshmi Roofing Industry</h1>
+    <p>Haliya's trusted name for genuine steel roofing sheets, pipes and industrial building materials.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal">
+        <span class="eyebrow">Our Story</span>
+        <h2>A Trusted Supplier, Built on Genuine Material and Fair Dealing</h2>
+        <p>Sri Lakshmi Roofing Industry is a leading supplier of steel roofing materials, industrial shed construction materials, and related accessories, based in Haliya, Nalgonda district, Telangana. We serve individual home owners, industrial customers, factories, warehouse owners, builders, contractors, fabricators, construction companies, commercial buildings and agricultural projects across the region.</p>
+        <p>Our focus has always been simple: supply 100% genuine, branded material — Tata, JSW, Jindal, Apollo and AMNS roofing sheets, along with Tata, MPL and Hariom pipes — at fair, transparent prices, backed by a team that actually understands roofing and industrial construction.</p>
+        <p>From a single roofing sheet for a home repair to a full truckload of shed construction material for a factory project, we stock what our customers need and deliver it reliably.</p>
+        <div class="grid grid--2" style="margin-top:28px;">
+          <div class="feature-card card">
+            <div class="feature-card__icon">{{ icon('warehouse', 24) }}</div>
+            <h3>Large Inventory</h3>
+            <p>Sheets, pipes, accessories, shed materials and consumables — always in stock.</p>
+          </div>
+          <div class="feature-card card">
+            <div class="feature-card__icon">{{ icon('badge-check', 24) }}</div>
+            <h3>GST Registered</h3>
+            <p>GSTIN {{ company_gst }} — proper invoicing on every order.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="card" style="padding:30px; background:linear-gradient(160deg,var(--navy-950),var(--navy-800)); color:#fff;">
+          <h3 style="color:#fff;">Who We Serve</h3>
+          <div class="footer-links" style="gap:14px; margin-top:16px;">
+            {% for aud in ["Individual Home Owners", "Industrial Customers & Factories", "Warehouse Owners", "Builders & Contractors", "Fabricators", "Construction Companies", "Commercial Buildings", "Agricultural Sheds"] %}
+            <div style="display:flex; align-items:center; gap:10px; color:#e6ecf3;">
+              <span style="color:var(--accent-400);">{{ icon('check-circle', 18) }}</span> {{ aud }}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--grey">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Promise</span>
+      <h2>Quality, Transparency & Reliable Delivery</h2>
+      <p>Every order — big or small — is handled with the same commitment to genuine material and honest pricing.</p>
+    </div>
+    <div class="grid grid--3">
+      <div class="card feature-card reveal">
+        <div class="feature-card__icon">{{ icon('shield', 24) }}</div>
+        <h3>Genuine Material Only</h3>
+        <p>We source directly so every sheet, pipe and accessory is authentic factory-grade material.</p>
+      </div>
+      <div class="card feature-card reveal reveal-delay-1">
+        <div class="feature-card__icon">{{ icon('truck', 24) }}</div>
+        <h3>Dependable Delivery</h3>
+        <p>Timely dispatch for both retail home-owner orders and bulk industrial requirements.</p>
+      </div>
+      <div class="card feature-card reveal reveal-delay-2">
+        <div class="feature-card__icon">{{ icon('heart-handshake', 24) }}</div>
+        <h3>Long-Term Relationships</h3>
+        <p>Many of our customers have been ordering from us for years — trust, built order after order.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section--tight">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <div>
+        <h2>Have a Project Coming Up?</h2>
+        <p>Tell us what you need — we'll help you choose the right sheet grade, thickness and quantity.</p>
+      </div>
+      <div class="cta-banner__actions">
+        <a href="{{ url_for('request_quote') }}" class="btn btn--accent">Request a Quote</a>
+        <a href="{{ url_for('contact') }}" class="btn btn--outline">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

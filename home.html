@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__content">
+      <span class="hero__badge">{{ icon('badge-check', 16) }} 100% Genuine Branded Materials</span>
+      <h1>Premium <span class="accent-text">Steel Roofing</span> & Industrial Building Materials</h1>
+      <p class="lead">Trusted supplier of Tata, JSW, Jindal, Apollo, AMNS Roofing Sheets, Pipes, Roofing Accessories, Industrial Shed Materials, and Industrial Consumables in Haliya, Nalgonda.</p>
+      <div class="hero__actions">
+        <a href="tel:{{ company_phone_primary_tel }}" class="btn btn--accent">{{ icon('phone', 18) }} Call Now</a>
+        <a href="https://wa.me/{{ company_whatsapp }}?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20roofing%20materials." target="_blank" rel="noopener" class="btn btn--whatsapp">{{ icon('whatsapp', 18) }} WhatsApp Us</a>
+        <a href="{{ url_for('request_quote') }}" class="btn btn--outline">Request Quote {{ icon('arrow-right', 16) }}</a>
+      </div>
+      <div class="hero__stats">
+        <div>
+          <div class="hero__stat-num">5+</div>
+          <div class="hero__stat-label">Trusted Steel Brands</div>
+        </div>
+        <div>
+          <div class="hero__stat-num">1000+</div>
+          <div class="hero__stat-label">Happy Customers</div>
+        </div>
+        <div>
+          <div class="hero__stat-num">100%</div>
+          <div class="hero__stat-label">Genuine Material</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero__visual">
+      <div class="roof-pattern"></div>
+      <div class="hero__visual-card">
+        <span class="brand__mark" style="background:linear-gradient(135deg,#e8590c,#ff7a29);">{{ icon('shield', 22) }}</span>
+        <div>
+          <strong>Quality Assured</strong>
+          <span>AZ-70 & AZ-150 grade sheets, 0.5mm–0.6mm</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US (preview) -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why Sri Lakshmi Roofing</span>
+      <h2>Built on Trust, Backed by Quality</h2>
+      <p>Seven reasons home owners, contractors and factories across Telangana choose us for every roofing and shed material need.</p>
+    </div>
+    <div class="grid grid--3">
+      {% for item in why_choose_us %}
+      <div class="card feature-card reveal reveal-delay-{{ loop.index0 % 4 }}">
+        <div class="feature-card__icon">{{ icon(item.icon, 26) }}</div>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.text }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center reveal" style="margin-top:36px;">
+      <a href="{{ url_for('why_choose_us') }}" class="btn btn--outline-dark">See All Reasons {{ icon('arrow-right', 16) }}</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS (preview) -->
+<section class="section section--grey">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Range</span>
+      <h2>Professional-Grade Roofing & Industrial Products</h2>
+      <p>Everything you need for a roofing job or an industrial shed — sourced from India's most trusted steel brands.</p>
+    </div>
+    <div class="grid grid--3">
+      {% for p in products %}
+      <div class="card product-card reveal reveal-delay-{{ loop.index0 % 4 }}" id="{{ p.slug }}">
+        <div class="product-card__media">
+          {{ icon(p.icon, 56) }}
+          <span class="product-card__badge">{{ p.brands|length }} Brands</span>
+        </div>
+        <div class="product-card__body">
+          <h3>{{ p.name }}</h3>
+          <p class="desc">{{ p.short }}</p>
+          <div class="product-card__footer">
+            <a href="{{ url_for('products') }}#{{ p.slug }}" class="btn btn--outline-dark btn--sm btn--block">View Details</a>
+            <a href="{{ url_for('request_quote', product=p.name) }}" class="btn btn--accent btn--sm btn--block">Enquire</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS STRIP -->
+<section class="section section--tight">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Authorized Stockists</span>
+      <h2>The Brands You Already Trust</h2>
+    </div>
+    <div class="brand-strip reveal">
+      {% for b in brands %}
+      <div class="brand-badge">{{ b.name }}<span>{{ b.note }}</span></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="section--tight">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <div>
+        <h2>Need Roofing Sheets or Shed Materials Fast?</h2>
+        <p>Call us, message on WhatsApp, or request a quote — our team responds quickly with the best pricing.</p>
+      </div>
+      <div class="cta-banner__actions">
+        <a href="tel:{{ company_phone_primary_tel }}" class="btn btn--accent">{{ icon('phone', 18) }} Call {{ company_phone_primary }}</a>
+        <a href="{{ url_for('request_quote') }}" class="btn btn--outline">Request a Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section section--dark">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Customer Voices</span>
+      <h2>What Our Customers Say</h2>
+      <p>Real feedback from home owners, contractors and industrial clients we've served.</p>
+    </div>
+    <div class="grid grid--4">
+      {% for t in testimonials %}
+      <div class="card testimonial-card reveal reveal-delay-{{ loop.index0 % 4 }}" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.1);">
+        <div class="testimonial-card__stars">
+          {% for i in range(t.rating) %}{{ icon('star', 16) }}{% endfor %}
+        </div>
+        <p class="quote" style="color:#e6ecf3;">&ldquo;{{ t.text }}&rdquo;</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar">{{ t.name[0] }}</div>
+          <div>
+            <strong style="color:#fff;">{{ t.name }}</strong>
+            <span>{{ t.role }}</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}
